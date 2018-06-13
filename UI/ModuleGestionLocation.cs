@@ -66,7 +66,7 @@ namespace LocaMat.UI
                 ConsoleHelper.AfficherListe(offreAffichage);
 
                 var qte = ConsoleSaisie.SaisirEntierObligatoire("Choisissez la quantité : ");
-
+                
 
 
                 int qtePossible = offre.Quantite;
@@ -81,7 +81,7 @@ namespace LocaMat.UI
                 var dateDebut = ConsoleSaisie.SaisirDateObligatoire("Choisissez la date de début de location : ");
                 var dateFin = ConsoleSaisie.SaisirDateObligatoire("Choisissez la date de fin de location : ");
 
-                //var locationsDispo = bd.Locations.Where(x => x.IdProduit == idProduit && x.DateDebut);
+                var locationsDispo = bd.Locations.Where(x => x.IdProduit == idProduit && x.DateDebut > dateFin && x.DateFin < dateDebut);
             }
 
         }
