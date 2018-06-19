@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LocaMat.Metier;
 using LocaMat.UI.Framework;
+using LocaMat.Dal;
 
 namespace LocaMat.UI
 {
@@ -71,12 +72,7 @@ namespace LocaMat.UI
             ConsoleHelper.AfficherListe(liste);
 
             var id = ConsoleSaisie.SaisirEntierObligatoire("Id à supprimer : ");
-            using (var bd = Application.GetBaseDonnees())
-            {
-                var agence = bd.Agences.Single(x => x.Id == id);
-                bd.Agences.Remove(agence);
-                bd.SaveChanges();
-            }
+            AgenceDal.Supprimer(id);
         }
     }
 }

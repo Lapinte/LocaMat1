@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dal\AgenceDal.cs" />
     <Compile Include="Dal\BaseDonnees.cs" />
     <Compile Include="Metier\Agence.cs" />
     <Compile Include="Metier\CategorieProduit.cs" />
