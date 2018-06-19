@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using LocaMat.Dal;
 using LocaMat.Metier;
 using LocaMat.UI.Framework;
 
@@ -79,11 +80,8 @@ namespace LocaMat.UI
                 IdCategorie = ConsoleSaisie.SaisirEntierObligatoire("Id Catégorie : ")
             };
 
-            using (var bd = Application.GetBaseDonnees())
-            {
-                bd.Produits.Add(produit);
-                bd.SaveChanges();
-            }
+            //ProduitDal.Ajouter(produit);
+            produit.Ajouter();
         }
 
         private void SupprimerProduit()

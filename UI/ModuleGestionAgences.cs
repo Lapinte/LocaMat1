@@ -26,6 +26,10 @@ namespace LocaMat.UI
             {
                 FonctionAExecuter = this.SupprimerAgence
             });
+            this.menu.AjouterElement(new ElementMenu("4", "Rechercher une agence")
+            {
+                FonctionAExecuter = this.RechercherAgence
+            });
             this.menu.AjouterElement(new ElementMenuQuitterMenu("R", "Revenir au menu principal..."));
         }
 
@@ -43,7 +47,7 @@ namespace LocaMat.UI
         {
             ConsoleHelper.AfficherEntete("Agences");
 
-            var liste = Application.GetBaseDonnees().Agences.ToList();
+            var liste = AgenceDal.RecupererListeAgences();
             ConsoleHelper.AfficherListe(liste);
         }
 
@@ -56,12 +60,8 @@ namespace LocaMat.UI
                 Ville = ConsoleSaisie.SaisirChaine("Ville : ", false),
                 Adresse = ConsoleSaisie.SaisirChaine("Adresse : ", false)
             };
-
-            using (var bd = Application.GetBaseDonnees())
-            {
-                bd.Agences.Add(agence);
-                bd.SaveChanges();
-            }
+            //AgenceDal.Ajouter(agence);
+            agence.Ajouter();
         }
 
         private void SupprimerAgence()
@@ -73,6 +73,16 @@ namespace LocaMat.UI
 
             var id = ConsoleSaisie.SaisirEntierObligatoire("Id à supprimer : ");
             AgenceDal.Supprimer(id);
+        }
+        private void RechercherAgence()
+        {
+            ConsoleHelper.AfficherEntete("Rechercher un Produit");
+
+            var ville = ConsoleSaisie.SaisirChaine("Saisir un nom de ville (ou en partie) : ", true);
+            var adresse = ConsoleSaisie.SaisirChaine("Saisir une adresse (ou en partie) : ", true);
+
+            var liste = AgenceDal.Rechercher(ville, adresse);
+            ConsoleHelper.AfficherListe(liste);
         }
     }
 }

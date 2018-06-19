@@ -17,5 +17,15 @@ namespace LocaMat.Metier
         {
             return this.Ville;
         }
+
+        public override bool Equals(object obj)
+        {
+            return (this.Id == ((Agence)obj).Id); 
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
